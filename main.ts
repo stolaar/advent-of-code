@@ -29,9 +29,10 @@ const readMultilineInput = (inputPath: string) => {
     console.log("Part one solution", solutionPartOne)
     console.log(`Part one execution time ${Math.round(partOneEnd - partOneStart)}ms`)
 
+    const partTwoStart = performance.now()
     const solutionPartTwo = dayModule.partTwo(args)
     const partTwoEnd= performance.now()
     console.log("Part two solution", solutionPartTwo)
-    console.log(`Part two execution time ${Math.round(partTwoEnd - partOneEnd)}ms`)
+    console.log(`Part two execution time ${Math.round(partTwoEnd - partTwoStart)}ms`)
 
 })()
