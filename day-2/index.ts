@@ -5,7 +5,6 @@ const part1Config : Record<string, number>= {
 }
 
 export const partOne = (input: string[]) => {
-    console.log("Part one input", input)
     return input.filter((line) => {
        const [, results] = line.split(': ')
          const reveals = results.split('; ')
