@@ -22,7 +22,6 @@ export const partOne = (input: string[]) => {
 }
 
 export const partTwo = (input: string[]) => {
-    const configMultiplied = Object.values(part1Config).reduce((acc, value) => acc * value, 1)
     return input.reduce((result, line) => {
        const fewestColors= (line.split(': ').pop() as string).split('; ').reduce((acc, set) => {
           const setColors = set.split(', ')
