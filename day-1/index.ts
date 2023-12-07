@@ -1,6 +1,3 @@
-import {readInput} from "../utils";
-import path from "path";
-
 const wordDigitsMap: Record<string, number> = {
     'zero': 0,
     'one': 1,
@@ -13,7 +10,7 @@ const wordDigitsMap: Record<string, number> = {
     'eight': 8,
     'nine': 9,
 }
-const getSumOfCalibrationValues = (input: string[]) => {
+export const partOne = (input: string[]) => {
     return input.reduce((acc, curr) => {
         const [firstNumber, ...numberValues] = curr.split('').filter(char => Number.isInteger(parseInt(char)))
 
@@ -22,7 +19,7 @@ const getSumOfCalibrationValues = (input: string[]) => {
     }, 0)
 }
 
-const getSumOfCalibrationValues2 = (input: string[]) => {
+export const partTwo = (input: string[]) => {
     return input.reduce((acc, curr) => {
         const [firstNumber, ...restNumber] = curr.split('').reduce((validNumbers, currentChar, index, self) => {
 
@@ -44,14 +41,3 @@ const getSumOfCalibrationValues2 = (input: string[]) => {
         return acc + sum
     }, 0)
 }
-
-export const main = () => {
-    const input = readInput(path.resolve(__dirname, 'input.txt'))
-    const input2 = readInput(path.resolve(__dirname, 'input2.txt'))
-
-    console.log("Solution part 1", getSumOfCalibrationValues(input))
-    console.log("Solution part 2", getSumOfCalibrationValues2(input2))
-}
-
-main()
-

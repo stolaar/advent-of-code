@@ -1,13 +1,11 @@
-import {readInput} from "../utils";
-import path from "path";
-
 const part1Config : Record<string, number>= {
     green: 13,
     red: 12,
     blue: 14,
 }
 
-export const part1 = (input: string[]) => {
+export const partOne = (input: string[]) => {
+    console.log("Part one input", input)
     return input.filter((line) => {
        const [, results] = line.split(': ')
          const reveals = results.split('; ')
@@ -24,7 +22,7 @@ export const part1 = (input: string[]) => {
     }, 0)
 }
 
-export const part2 = (input: string[]) => {
+export const partTwo = (input: string[]) => {
     const configMultiplied = Object.values(part1Config).reduce((acc, value) => acc * value, 1)
     return input.reduce((result, line) => {
        const fewestColors= (line.split(': ').pop() as string).split('; ').reduce((acc, set) => {
@@ -41,16 +39,3 @@ export const part2 = (input: string[]) => {
             return result + powerOfFewestColors
     }, 0)
 }
-
-export const main = () => {
-    const example = readInput(path.resolve(__dirname, 'example.txt'))
-    const input = readInput(path.resolve(__dirname, 'input.txt'))
-
-    console.log("Solution example", part1(example))
-    console.log("Solution part 1", part1(input))
-    console.log("Solution part 2 example", part2(example))
-    console.log("Solution part 2", part2(input))
-}
-
-main()
-
