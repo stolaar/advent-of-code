@@ -35,6 +35,15 @@ export const partOne = (races: IRace[]) => {
     .reduce((acc, curr) => acc * curr, 1)
 }
 
-export const partTwo = (input: string[]) => {
-  return ""
+export const partTwo = (races: IRace[]) => {
+  const race = races.reduce(
+    (acc, curr) => {
+      return {
+        duration: Number(`${acc.duration}${curr.duration}`),
+        distance: Number(`${acc.distance}${curr.distance}`),
+      }
+    },
+    { duration: 0, distance: 0 } as IRace,
+  )
+  return getNumOfWaysToBeatTheRecord(race.duration, race.distance)
 }
