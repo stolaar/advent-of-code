@@ -53,6 +53,19 @@ export const partOne = (input: number[][]) => {
     .reduce((x, y) => x + y, 0)
 }
 
-export const partTwo = (input: string[]) => {
-  return ""
+export const partTwo = (input: number[][]) => {
+  return input
+    .map((line) => {
+      let sequences = [line].reduce(reduceSequence, [line])
+      for (let x = sequences.length - 1; x > 0; x--) {
+        const previous = sequences[x - 1]
+        const firstValue = sequences[x][0]
+
+        previous.unshift(previous[0] - firstValue)
+      }
+
+      const first = sequences[0]
+      return first[0]
+    })
+    .reduce((x, y) => x + y, 0)
 }
