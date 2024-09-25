@@ -72,7 +72,7 @@ func Run(year string, i string) {
 
 	start = time.Now()
 
-	result = partTwo.(func(interface{}) interface{})(input)
+	result = partTwo.(func(any) interface{})(input)
 
 	end = time.Since(start)
 	fmt.Printf("Part two exec time: %s \n", end)
