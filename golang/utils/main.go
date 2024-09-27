@@ -18,8 +18,7 @@ func buildPlugin(year string, i string) {
 }
 
 func removePlugin(year string, i string) {
-	cmd := exec.Command("rm", "-rf", fmt.Sprintf("%s/day-%s/main.so", year, i))
-	cmd.Run()
+	exec.Command("rm", "-rf", fmt.Sprintf("%s/day-%s/main.so", year, i)).Run()
 }
 
 func Run(year string, i string) {
@@ -72,7 +71,7 @@ func Run(year string, i string) {
 
 	start = time.Now()
 
-	result = partTwo.(func(any) interface{})(input)
+	result = partTwo.(func(interface{}) interface{})(input)
 
 	end = time.Since(start)
 	fmt.Printf("Part two exec time: %s \n", end)
