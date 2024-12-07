@@ -1,0 +1,149 @@
+package main
+
+import (
+	"strconv"
+	"strings"
+)
+
+type Equation struct {
+	TestVal int
+	Nums    []int
+}
+
+func ProcessInput(input []string) interface{} {
+	equations := make([]Equation, len(input)-1)
+
+	for i := 0; i < len(input)-1; i++ {
+		parts := strings.Split(input[i], ":")
+
+		testVal, _ := strconv.Atoi(parts[0])
+
+		numParts := strings.Fields(parts[1])
+
+		nums := make([]int, len(numParts))
+
+		for idx, part := range numParts {
+			num, _ := strconv.Atoi(part)
+			nums[idx] = num
+		}
+
+		eq := Equation{
+			TestVal: testVal,
+			Nums:    nums,
+		}
+
+		equations[i] = eq
+	}
+	return equations
+}
+
+func dp(target int, current int, j int, nums []int) bool {
+	sum, mul := current+nums[j], current*nums[j]
+	isLastIndex := j == len(nums)-1
+
+	if (sum == target || mul == target) && isLastIndex {
+		return true
+	}
+
+	if sum > target && mul > target {
+		return false
+	}
+
+	if isLastIndex {
+		return false
+	}
+
+	return dp(target, sum, j+1, nums) || dp(target, mul, j+1, nums)
+}
+
+func concat(i, j int) int {
+	is, js := strconv.Itoa(i), strconv.Itoa(j)
+
+	res, _ := strconv.Atoi(is + js)
+
+	return res
+}
+
+func extractFromTarget(target int, current int) int {
+	ts, cs := strconv.Itoa(target), strconv.Itoa(current)
+
+	if !strings.HasPrefix(ts, cs) {
+		return target
+	}
+
+	cut, _ := strings.CutPrefix(ts, cs)
+	newTarget, _ := strconv.Atoi(cut)
+
+	return newTarget
+}
+
+func dp2(target int, acc int, j int, nums []int) bool {
+	if j >= len(nums) {
+		return false
+	}
+
+	sum, mul, merged := acc+nums[j], acc*nums[j], concat(acc, nums[j])
+	isLastIndex := j == len(nums)-1
+
+	if (sum == target || mul == target || merged == target) && isLastIndex {
+		return true
+	}
+
+	if sum > target && mul > target && merged > target {
+		return false
+	}
+	//
+	// accCon, mergedCon := extractFromTarget(target, acc), extractFromTarget(target, merged)
+	//
+	// valid := false
+	//
+	// if accCon != target {
+	// 	valid = dp2(accCon, 0, j+1, nums)
+	// }
+	//
+	// if valid {
+	// 	return true
+	// }
+	//
+	// if mergedCon != target {
+	// 	valid = dp2(mergedCon, 0, j+1, nums)
+	// }
+	//
+	// if valid {
+	// 	return true
+	// }
+
+	if isLastIndex {
+		return false
+	}
+
+	return dp2(target, sum, j+1, nums) || dp2(target, mul, j+1, nums) || dp2(target, merged, j+1, nums)
+}
+
+func PartOne(input interface{}) interface{} {
+	equations := input.([]Equation)
+
+	sum := 0
+
+	for _, eq := range equations {
+		if dp(eq.TestVal, eq.Nums[0], 1, eq.Nums) {
+			sum += eq.TestVal
+		}
+	}
+	return sum
+}
+
+func PartTwo(input interface{}) interface{} {
+	equations := input.([]Equation)
+
+	sum := 0
+
+	for _, eq := range equations {
+		if dp2(eq.TestVal, eq.Nums[0], 1, eq.Nums) {
+			sum += eq.TestVal
+		}
+	}
+
+	return sum
+}
+
