@@ -8,6 +8,7 @@ Welcome to my **Advent of Code** solutions repository! This repository contains 
 
 The solutions are organized by programming language and year, with each day having its own subdirectory.
 
+```
 advent-of-code/
 ├── golang/ # Solutions written in Go
 │ ├── 2023/ # Solutions for the 2023 Advent of Code
@@ -22,6 +23,7 @@ advent-of-code/
 │ │ └── ...
 │ └── ...
 └── ...
+```
 
 ### Language Details
 
@@ -37,21 +39,36 @@ Each day's directory typically includes:
 ## 🛠️ Usage
 
 ### Running Go Solutions
-1. Navigate to the day's directory (e.g., `golang/2023/day01`).
+1. Build the cli
+```bash
+go build -o aoc main.go
+```
+
 2. Run the solution using:
 
 ```bash
 # For running day 1 from year 2022
-go run main.go 1 2022
+aoc 1 2022
+```
+
+```bash
+# For running day 1 the current year
+aoc 1
 ```
 
 3. Create new day
 ```
-# generates directories for day one in year 2024
-go run main.go generate 1 2024
+# generates day 1 for the current year
+aoc generate 1
+
+# generates day 1 for year 2023
+aoc generate 1 2023
 ```
 
-Running TypeScript Solutions
+### Running TypeScript Solutions
+
+Navigate to the `typescript` directory
+
 Install dependencies if required:
 ```
 yarn
@@ -64,7 +81,7 @@ yarn start 1
 
 Initialize new day files
 ```
-yarn init-day 1
+yarn generate 1
 ```
 
 🚀 Getting Started

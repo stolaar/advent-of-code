@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \\\"Error: no test specified\\\" && exit day-1",
     "start": "ts-node main.ts",
-    "init-day": "ts-node ./utils/init-day.ts"
+    "generate": "ts-node ./utils/init-day.ts"
   },
   "keywords": [],
   "author": "",
