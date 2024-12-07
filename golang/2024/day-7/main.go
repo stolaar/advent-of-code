@@ -64,19 +64,6 @@ func concat(i, j int) int {
 	return res
 }
 
-func extractFromTarget(target int, current int) int {
-	ts, cs := strconv.Itoa(target), strconv.Itoa(current)
-
-	if !strings.HasPrefix(ts, cs) {
-		return target
-	}
-
-	cut, _ := strings.CutPrefix(ts, cs)
-	newTarget, _ := strconv.Atoi(cut)
-
-	return newTarget
-}
-
 func dp2(target int, acc int, j int, nums []int) bool {
 	if j >= len(nums) {
 		return false
@@ -92,26 +79,6 @@ func dp2(target int, acc int, j int, nums []int) bool {
 	if sum > target && mul > target && merged > target {
 		return false
 	}
-	//
-	// accCon, mergedCon := extractFromTarget(target, acc), extractFromTarget(target, merged)
-	//
-	// valid := false
-	//
-	// if accCon != target {
-	// 	valid = dp2(accCon, 0, j+1, nums)
-	// }
-	//
-	// if valid {
-	// 	return true
-	// }
-	//
-	// if mergedCon != target {
-	// 	valid = dp2(mergedCon, 0, j+1, nums)
-	// }
-	//
-	// if valid {
-	// 	return true
-	// }
 
 	if isLastIndex {
 		return false
