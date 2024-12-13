@@ -77,8 +77,66 @@ type Stone struct {
 	Splits   [2]*Stone
 }
 
-func PartTwo(input interface{}) interface{} {
-	nums := input.([]int)
+func afterBlink(stone int) []int {
+	var result []int
 
-	return nums
+	if stone == 0 {
+		result = append(result, 1)
+		return result
+	}
+	asStr := strconv.Itoa(stone)
+
+	if len(asStr)%2 == 0 {
+		leftD, _ := strconv.Atoi(asStr[:len(asStr)/2])
+		rightD, _ := strconv.Atoi(asStr[len(asStr)/2:])
+
+		result = append(result, leftD, rightD)
+		return result
+	}
+
+	result = append(result, stone*2024)
+	return result
+}
+
+func process(stone, depth int, memo map[int]map[int]int) int {
+	stoneMap := map[int]int{}
+
+	if _, ok := memo[stone]; ok {
+		stoneMap = memo[stone]
+	}
+
+	newStones := 0
+
+	if _, ok := stoneMap[depth]; ok {
+		return stoneMap[depth]
+	}
+
+	if depth-1 < 0 {
+		return newStones
+	}
+
+	stonesAfterBlink := afterBlink(stone)
+
+	newStones += process(stonesAfterBlink[0], depth-1, memo)
+
+	if len(stonesAfterBlink) > 1 {
+		newStones++
+		newStones += process(stonesAfterBlink[1], depth-1, memo)
+		stoneMap[depth] = newStones
+		memo[stone] = stoneMap
+	}
+
+	return newStones
+}
+
+func PartTwo(input interface{}) interface{} {
+	stones, memo := input.([]int), map[int]map[int]int{}
+
+	total := len(stones)
+
+	for _, stone := range stones {
+		total += process(stone, 75, memo)
+	}
+
+	return total
 }
