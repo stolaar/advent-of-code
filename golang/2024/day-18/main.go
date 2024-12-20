@@ -117,10 +117,10 @@ func ProcessInput(input []string) interface{} {
 	return input[:len(input)-1]
 }
 
-func (r *RAM) reset(x, y int) {
+func (r *RAM) reset() {
 	for i, row := range r.grid {
 		for j, col := range row {
-			if i == 0 && j == 0 || (i < y) {
+			if i == 0 && j == 0 {
 				continue
 			}
 			if !col.Corrupted {
@@ -158,7 +158,7 @@ func PartTwo(input interface{}) interface{} {
 
 		ram.grid[y][x].Corrupted = true
 
-		ram.reset(x, y)
+		ram.reset()
 
 		ram.explore(ram.grid[0][0])
 
