@@ -1,10 +1,12 @@
-package main
+package solution
 
 import (
 	"math"
 )
 
-func ProcessInput(input []string) interface{} {
+type Solution struct{}
+
+func (s Solution) ProcessInput(input []string) any {
 	grid, antennas := make([][]*Column, len(input)-1), map[byte][]*Column{}
 
 	for i := 0; i < len(input)-1; i++ {
@@ -248,7 +250,7 @@ func (am *AntennasMap) placeAntinodes(antenna1, antenna2 *Column, atAnyPlace boo
 	}
 }
 
-func PartOne(input interface{}) interface{} {
+func (s Solution) PartOne(input any) any {
 	antennasMap := input.(AntennasMap)
 
 	for _, antennas := range antennasMap.antennas {
@@ -275,7 +277,7 @@ func PartOne(input interface{}) interface{} {
 	return sum
 }
 
-func PartTwo(input interface{}) interface{} {
+func (s Solution) PartTwo(input any) any {
 	antennasMap := input.(AntennasMap)
 
 	for _, antennas := range antennasMap.antennas {
@@ -302,3 +304,7 @@ func PartTwo(input interface{}) interface{} {
 	return sum
 }
 
+
+func GetSolution() Solution {
+	return Solution{}
+}

@@ -1,11 +1,13 @@
-package main
+package solution
+
+type Solution struct{}
 
 type Rucksack struct {
 	firstCompartment  string
 	secondCompartment string
 }
 
-func ProcessInput(input []string) interface{} {
+func (s Solution) ProcessInput(input []string) any {
 	result := []*Rucksack{}
 
 	for _, str := range input {
@@ -27,7 +29,7 @@ func getPriority(r rune) int {
 	return int(r) - 38
 }
 
-func PartOne(input interface{}) interface{} {
+func (s Solution) PartOne(input any) any {
 	rucksacks, result := input.([]*Rucksack), 0
 
 	for _, rucksack := range rucksacks {
@@ -46,7 +48,7 @@ func PartOne(input interface{}) interface{} {
 	return result
 }
 
-func PartTwo(input interface{}) interface{} {
+func (s Solution) PartTwo(input any) any {
 	rucksacks, result := input.([]*Rucksack), 0
 
 	for i := 0; i < len(rucksacks)-3; i += 3 {
@@ -79,3 +81,7 @@ func PartTwo(input interface{}) interface{} {
 	return result
 }
 
+
+func GetSolution() Solution {
+	return Solution{}
+}

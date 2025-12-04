@@ -1,4 +1,6 @@
-package main
+package solution
+
+type Solution struct{}
 
 type Plot struct {
 	Val                                                  byte
@@ -293,11 +295,11 @@ func stringsToGarden(str interface{}) *Garden {
 	}
 }
 
-func ProcessInput(input []string) interface{} {
+func (s Solution) ProcessInput(input []string) any {
 	return input
 }
 
-func PartOne(input interface{}) interface{} {
+func (s Solution) PartOne(input any) any {
 	garden := stringsToGarden(input)
 
 	for _, row := range garden.grid {
@@ -317,7 +319,7 @@ func PartOne(input interface{}) interface{} {
 	return total
 }
 
-func PartTwo(input interface{}) interface{} {
+func (s Solution) PartTwo(input any) any {
 	garden := stringsToGarden(input)
 
 	for _, row := range garden.grid {
@@ -337,4 +339,8 @@ func PartTwo(input interface{}) interface{} {
 		total += sides * area
 	}
 	return total
+}
+
+func GetSolution() Solution {
+	return Solution{}
 }

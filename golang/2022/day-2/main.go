@@ -1,10 +1,12 @@
-package main
+package solution
 
 import (
 	"strings"
 )
 
-func ProcessInput(input []string) interface{} {
+type Solution struct{}
+
+func (s Solution) ProcessInput(input []string) any {
 	firstp, secondp := []string{}, []string{}
 	for _, str := range input {
 		if str == "" {
@@ -74,7 +76,7 @@ func score(opponent string, mine string) int {
 	return scores[[2]string{opponent, mine}]
 }
 
-func PartOne(input interface{}) interface{} {
+func (s Solution) PartOne(input any) any {
 	strategyGuide := input.([2][]string)
 
 	playerOne, playerTwo, total := strategyGuide[0], strategyGuide[1], 0
@@ -85,7 +87,7 @@ func PartOne(input interface{}) interface{} {
 	return total
 }
 
-func PartTwo(input interface{}) interface{} {
+func (s Solution) PartTwo(input any) any {
 	strategyGuide := input.([2][]string)
 
 	playerOne, playerTwo, total := strategyGuide[0], strategyGuide[1], 0
@@ -96,3 +98,7 @@ func PartTwo(input interface{}) interface{} {
 	return total
 }
 
+
+func GetSolution() Solution {
+	return Solution{}
+}

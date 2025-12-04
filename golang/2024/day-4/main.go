@@ -1,8 +1,10 @@
-package main
+package solution
 
 import (
 	"strings"
 )
+
+type Solution struct{}
 
 type Column struct {
 	Val byte
@@ -14,7 +16,7 @@ type WordSearch struct {
 	grid [][]*Column
 }
 
-func ProcessInput(input []string) interface{} {
+func (s Solution) ProcessInput(input []string) any {
 	grid := make([][]*Column, len(input)-1)
 
 	for i := 0; i < len(grid); i++ {
@@ -256,7 +258,7 @@ func (ws *WordSearch) isXMas(column *Column) int {
 	return 0
 }
 
-func PartOne(input interface{}) interface{} {
+func (s Solution) PartOne(input any) any {
 	ws, total := input.(*WordSearch), 0
 
 	for _, row := range ws.grid {
@@ -269,7 +271,7 @@ func PartOne(input interface{}) interface{} {
 	return total
 }
 
-func PartTwo(input interface{}) interface{} {
+func (s Solution) PartTwo(input any) any {
 	ws, total := input.(*WordSearch), 0
 
 	for _, row := range ws.grid {
@@ -280,4 +282,8 @@ func PartTwo(input interface{}) interface{} {
 		}
 	}
 	return total
+}
+
+func GetSolution() Solution {
+	return Solution{}
 }

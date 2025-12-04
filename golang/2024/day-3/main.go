@@ -1,4 +1,4 @@
-package main
+package solution
 
 import (
 	"bytes"
@@ -6,12 +6,14 @@ import (
 	"strings"
 )
 
-func ProcessInput(input []string) interface{} {
+type Solution struct{}
+
+func (s Solution) ProcessInput(input []string) any {
 	instructions := strings.Join(input, "\n")
 	return instructions
 }
 
-func PartOne(input interface{}) interface{} {
+func (s Solution) PartOne(input any) any {
 	instructions := input.(string)
 
 	mul, leftOp, rightOp := bytes.NewBufferString(""), bytes.NewBufferString(""), bytes.NewBufferString("")
@@ -68,7 +70,7 @@ func PartOne(input interface{}) interface{} {
 	return result
 }
 
-func PartTwo(input interface{}) interface{} {
+func (s Solution) PartTwo(input any) any {
 	instructions := input.(string)
 
 	mul, leftOp, rightOp := bytes.NewBufferString(""), bytes.NewBufferString(""), bytes.NewBufferString("")
@@ -161,4 +163,9 @@ func PartTwo(input interface{}) interface{} {
 	}
 
 	return result
+}
+
+
+func GetSolution() Solution {
+	return Solution{}
 }

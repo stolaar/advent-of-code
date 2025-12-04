@@ -1,10 +1,12 @@
-package main
+package solution
 
 import (
 	"math"
 	"strconv"
 	"strings"
 )
+
+type Solution struct{}
 
 type File struct {
 	name     string
@@ -130,7 +132,7 @@ func (fs *Filesystem) Exec(line string, lines []string, i int) int {
 	return i
 }
 
-func ProcessInput(lines []string) interface{} {
+func (s Solution) ProcessInput(lines []string) any {
 	rootDir := &Dir{
 		totalSize: 0,
 		name:      "/",
@@ -169,7 +171,7 @@ func countSize(root *Dir, count int) int {
 	return count
 }
 
-func PartOne(input interface{}) interface{} {
+func (s Solution) PartOne(input any) any {
 	fs := input.(Filesystem)
 	return countSize(fs.root, 0)
 }
@@ -185,9 +187,13 @@ func findDirToRemove(minToRemove int, dir *Dir, currentMin int) int {
 	return currentMin
 }
 
-func PartTwo(input interface{}) interface{} {
+func (s Solution) PartTwo(input any) any {
 	fs, totalAvailable, minUnused := input.(Filesystem), 70_000_000, 30_000_000
 	requiredToRemove := minUnused - (totalAvailable - fs.root.totalSize)
 
 	return findDirToRemove(requiredToRemove, fs.root, math.MaxInt64)
+}
+
+func GetSolution() Solution {
+	return Solution{}
 }

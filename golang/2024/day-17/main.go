@@ -1,4 +1,4 @@
-package main
+package solution
 
 import (
 	"fmt"
@@ -7,6 +7,8 @@ import (
 	"strconv"
 	"strings"
 )
+
+type Solution struct{}
 
 type Computer struct {
 	RegisterA, RegisterB, RegisterC int
@@ -50,7 +52,7 @@ func generateComputer(lines []string) *Computer {
 	return computer
 }
 
-func ProcessInput(input []string) interface{} {
+func (s Solution) ProcessInput(input []string) any {
 	return input
 }
 
@@ -104,7 +106,7 @@ func (c *Computer) cdv(operand int) {
 	c.RegisterC = int(float64(c.RegisterA) / math.Pow(2, float64(c.getComboOperand(operand))))
 }
 
-func PartOne(input interface{}) interface{} {
+func (s Solution) PartOne(input any) any {
 	computer := generateComputer(input.([]string))
 	i := 0
 	output := []int{}
@@ -148,7 +150,50 @@ func PartOne(input interface{}) interface{} {
 	return result.String()
 }
 
-func PartTwo(input interface{}) interface{} {
-	return ""
+func (s Solution) PartTwo(input any) any {
+	computer := generateComputer(input.([]string))
+	i := 0
+	output := []int{}
+
+	for i < len(computer.Program)-1 {
+		opcode, operand := computer.Program[i], computer.Program[i+1]
+
+		switch opcode {
+		case 0:
+			computer.adv(operand)
+		case 1:
+			computer.bxl(operand)
+		case 2:
+			computer.bst(operand)
+		case 3:
+			i = computer.jnz(operand, i)
+			continue
+		case 4:
+			computer.bxc()
+		case 5:
+			output = append(output, computer.out(operand))
+		case 6:
+			computer.bdv(operand)
+		case 7:
+			computer.cdv(operand)
+		}
+
+		i += 2
+	}
+
+	var result strings.Builder
+	fmt.Println(computer)
+
+	for idx, out := range output {
+		result.WriteString(fmt.Sprintf("%d", out))
+		if idx < len(output)-1 {
+			result.WriteString(",")
+		}
+	}
+
+	return result.String()
 }
 
+func GetSolution() Solution {
+	return Solution{}
+}

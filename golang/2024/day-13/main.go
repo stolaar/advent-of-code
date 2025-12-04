@@ -1,10 +1,12 @@
-package main
+package solution
 
 import (
 	"regexp"
 	"strconv"
 	"strings"
 )
+
+type Solution struct{}
 
 type Machine struct {
 	ButtonA [2]int
@@ -25,7 +27,7 @@ func processLine(line string) [2]int {
 	return [2]int{x, y}
 }
 
-func ProcessInput(input []string) interface{} {
+func (s Solution) ProcessInput(input []string) any {
 	machines := []Machine{}
 
 	for i := 0; i < len(input)-1; i += 3 {
@@ -61,7 +63,7 @@ func processMachine(machine Machine, maxPresses int) int {
 	return 0
 }
 
-func PartOne(input interface{}) interface{} {
+func (s Solution) PartOne(input any) any {
 	machines, total := input.([]Machine), 0
 
 	for _, machine := range machines {
@@ -104,7 +106,7 @@ func solve(buttonA, buttonB, target [2]int) int {
 	return (x * 3) + y
 }
 
-func PartTwo(input interface{}) interface{} {
+func (s Solution) PartTwo(input any) any {
 	machines, total := input.([]Machine), 0
 
 	for _, machine := range machines {
@@ -117,3 +119,7 @@ func PartTwo(input interface{}) interface{} {
 	return total
 }
 
+
+func GetSolution() Solution {
+	return Solution{}
+}

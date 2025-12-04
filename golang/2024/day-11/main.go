@@ -1,11 +1,13 @@
-package main
+package solution
 
 import (
 	"strconv"
 	"strings"
 )
 
-func ProcessInput(input []string) interface{} {
+type Solution struct{}
+
+func (s Solution) ProcessInput(input []string) any {
 	parts := strings.Fields(strings.Join(input, "\n"))
 
 	nums := make([]int, len(parts))
@@ -59,7 +61,7 @@ func blink(nums, slice1 []int, i int) ([]int, []int) {
 	return nums, slice1
 }
 
-func PartOne(input interface{}) interface{} {
+func (s Solution) PartOne(input any) any {
 	nums := input.([]int)
 
 	slice1 := []int{}
@@ -129,7 +131,7 @@ func process(stone, depth int, memo map[int]map[int]int) int {
 	return newStones
 }
 
-func PartTwo(input interface{}) interface{} {
+func (s Solution) PartTwo(input any) any {
 	stones, memo := input.([]int), map[int]map[int]int{}
 
 	total := len(stones)
@@ -139,4 +141,8 @@ func PartTwo(input interface{}) interface{} {
 	}
 
 	return total
+}
+
+func GetSolution() Solution {
+	return Solution{}
 }

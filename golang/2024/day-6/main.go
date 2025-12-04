@@ -1,8 +1,10 @@
-package main
+package solution
 
 import (
 	"fmt"
 )
+
+type Solution struct{}
 
 type Column struct {
 	Val      byte
@@ -84,7 +86,7 @@ func (guard *Guard) move(testObstacle *Column) (*Column, error) {
 	return next, nil
 }
 
-func ProcessInput(input []string) interface{} {
+func (s Solution) ProcessInput(input []string) any {
 	grid, guard := make([][]*Column, len(input)-1), &Guard{
 		direction: Up,
 	}
@@ -116,7 +118,7 @@ func ProcessInput(input []string) interface{} {
 	return guard
 }
 
-func PartOne(input interface{}) interface{} {
+func (s Solution) PartOne(input any) any {
 	guard := input.(*Guard)
 
 	for {
@@ -136,7 +138,7 @@ func PartOne(input interface{}) interface{} {
 	}
 }
 
-func PartTwo(input interface{}) interface{} {
+func (s Solution) PartTwo(input any) any {
 	guard, testObstacles := input.(*Guard), []*Column{}
 
 	for _, row := range guard.grid {
@@ -179,4 +181,8 @@ func PartTwo(input interface{}) interface{} {
 	}
 
 	return sum
+}
+
+func GetSolution() Solution {
+	return Solution{}
 }

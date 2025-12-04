@@ -1,4 +1,4 @@
-package main
+package solution
 
 import (
 	"math"
@@ -12,7 +12,9 @@ type Input struct {
 	list2 []int
 }
 
-func ProcessInput(input []string) interface{} {
+type Solution struct{}
+
+func (s Solution) ProcessInput(input []string) any {
 	list1, list2 := make([]int, len(input)), make([]int, len(input))
 
 	for idx, line := range input {
@@ -30,7 +32,7 @@ func ProcessInput(input []string) interface{} {
 	}
 }
 
-func PartOne(input interface{}) interface{} {
+func (s Solution) PartOne(input any) any {
 	locations := input.(*Input)
 
 	sort.Ints(locations.list1)
@@ -44,7 +46,7 @@ func PartOne(input interface{}) interface{} {
 	return result
 }
 
-func PartTwo(input interface{}) interface{} {
+func (s Solution) PartTwo(input any) any {
 	locations, dict := input.(*Input), make(map[int]int)
 
 	for i := 0; i < len(locations.list2); i++ {
@@ -58,5 +60,9 @@ func PartTwo(input interface{}) interface{} {
 	}
 
 	return result
+}
+
+func GetSolution() Solution {
+	return Solution{}
 }
 

@@ -1,4 +1,4 @@
-package main
+package solution
 
 import (
 	"encoding/json"
@@ -6,6 +6,8 @@ import (
 	"strconv"
 	"strings"
 )
+
+type Solution struct{}
 
 type Supplies struct {
 	stacks       [][]string
@@ -23,7 +25,7 @@ func atoi(a string) int {
 	return i
 }
 
-func ProcessInput(input []string) interface{} {
+func (s Solution) ProcessInput(input []string) any {
 	docsProcessed, docs, instructions, maxlen := false, []string{}, []*Instruction{}, 0
 	for _, str := range input {
 		if str == "" {
@@ -73,7 +75,7 @@ func ProcessInput(input []string) interface{} {
 	}
 }
 
-func PartOne(input interface{}) interface{} {
+func (s Solution) PartOne(input any) any {
 	supplies, result := input.(Supplies), ""
 	stacksjson, _ := json.Marshal(supplies.stacks)
 	var stacks [][]string
@@ -98,7 +100,7 @@ func PartOne(input interface{}) interface{} {
 	return result
 }
 
-func PartTwo(input interface{}) interface{} {
+func (s Solution) PartTwo(input any) any {
 	supplies, result := input.(Supplies), ""
 	stacksjson, _ := json.Marshal(supplies.stacks)
 	var stacks [][]string
@@ -120,4 +122,8 @@ func PartTwo(input interface{}) interface{} {
 	}
 
 	return result
+}
+
+func GetSolution() Solution {
+	return Solution{}
 }

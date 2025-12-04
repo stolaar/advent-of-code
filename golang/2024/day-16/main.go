@@ -1,8 +1,10 @@
-package main
+package solution
 
 import (
 	"math"
 )
+
+type Solution struct{}
 
 type Tile struct {
 	Start, End, Visited bool
@@ -51,7 +53,7 @@ func linesToMaze(lines []string) *Maze {
 	return maze
 }
 
-func ProcessInput(input []string) interface{} {
+func (s Solution) ProcessInput(input []string) any {
 	return input
 }
 
@@ -119,7 +121,7 @@ func (m *Maze) explore(tile *Tile, direction byte) {
 	}
 }
 
-func PartOne(input interface{}) interface{} {
+func (s Solution) PartOne(input any) any {
 	m := linesToMaze(input.([]string))
 
 	m.explore(m.Start, '>')
@@ -127,6 +129,10 @@ func PartOne(input interface{}) interface{} {
 	return m.End.Path
 }
 
-func PartTwo(input interface{}) interface{} {
+func (s Solution) PartTwo(input any) any {
 	return ""
+}
+
+func GetSolution() Solution {
+	return Solution{}
 }

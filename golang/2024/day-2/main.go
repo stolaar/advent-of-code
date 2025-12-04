@@ -1,4 +1,4 @@
-package main
+package solution
 
 import (
 	"math"
@@ -14,7 +14,9 @@ const (
 	Decreasing
 )
 
-func ProcessInput(input []string) interface{} {
+type Solution struct{}
+
+func (s Solution) ProcessInput(input []string) any {
 	reports := make([][]int, len(input)-1)
 
 	for idx, line := range input {
@@ -68,7 +70,7 @@ func isValid(a, b int, direction Direction) (bool, Direction) {
 	return true, direction
 }
 
-func PartOne(input interface{}) interface{} {
+func (s Solution) PartOne(input any) any {
 	reports, result := input.([][]int), 0
 
 	for _, levels := range reports {
@@ -143,7 +145,7 @@ func checkLevels(levels []int, initialCheck bool) bool {
 	return valid
 }
 
-func PartTwo(input interface{}) interface{} {
+func (s Solution) PartTwo(input any) any {
 	reports, result := input.([][]int), 0
 
 	for _, levels := range reports {
@@ -154,4 +156,8 @@ func PartTwo(input interface{}) interface{} {
 	}
 
 	return result
+}
+
+func GetSolution() Solution {
+	return Solution{}
 }

@@ -1,10 +1,12 @@
-package main
+package solution
 
-func ProcessInput(input []string) interface{} {
+type Solution struct{}
+
+func (s Solution) ProcessInput(input []string) any {
 	return input
 }
 
-func PartOne(input interface{}) interface{} {
+func (s Solution) PartOne(input any) any {
 	buffer := input.([]string)[0]
 
 	l, r := 0, 1
@@ -34,7 +36,7 @@ func PartOne(input interface{}) interface{} {
 	return r
 }
 
-func PartTwo(input interface{}) interface{} {
+func (s Solution) PartTwo(input any) any {
 	buffer := input.([]string)[0]
 
 	l, r := 0, 1
@@ -62,4 +64,8 @@ func PartTwo(input interface{}) interface{} {
 	}
 
 	return r
+}
+
+func GetSolution() Solution {
+	return Solution{}
 }

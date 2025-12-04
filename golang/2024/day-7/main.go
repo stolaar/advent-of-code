@@ -1,16 +1,18 @@
-package main
+package solution
 
 import (
 	"strconv"
 	"strings"
 )
 
+type Solution struct{}
+
 type Equation struct {
 	TestVal int
 	Nums    []int
 }
 
-func ProcessInput(input []string) interface{} {
+func (s Solution) ProcessInput(input []string) any {
 	equations := make([]Equation, len(input)-1)
 
 	for i := 0; i < len(input)-1; i++ {
@@ -87,7 +89,7 @@ func dp2(target int, acc int, j int, nums []int) bool {
 	return dp2(target, sum, j+1, nums) || dp2(target, mul, j+1, nums) || dp2(target, merged, j+1, nums)
 }
 
-func PartOne(input interface{}) interface{} {
+func (s Solution) PartOne(input any) any {
 	equations := input.([]Equation)
 
 	sum := 0
@@ -100,7 +102,7 @@ func PartOne(input interface{}) interface{} {
 	return sum
 }
 
-func PartTwo(input interface{}) interface{} {
+func (s Solution) PartTwo(input any) any {
 	equations := input.([]Equation)
 
 	sum := 0
@@ -114,3 +116,7 @@ func PartTwo(input interface{}) interface{} {
 	return sum
 }
 
+
+func GetSolution() Solution {
+	return Solution{}
+}

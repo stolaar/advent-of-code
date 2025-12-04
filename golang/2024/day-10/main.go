@@ -1,10 +1,12 @@
-package main
+package solution
 
 import (
 	"strconv"
 )
 
-func ProcessInput(input []string) interface{} {
+type Solution struct{}
+
+func (s Solution) ProcessInput(input []string) any {
 	grid := make([][]*Trail, len(input)-1)
 
 	for i := 0; i < len(input[0]); i++ {
@@ -74,7 +76,7 @@ func (tm *TopographicMap) explore(headTrail *Trail, distinct bool) int {
 	return sum
 }
 
-func PartOne(input interface{}) interface{} {
+func (s Solution) PartOne(input any) any {
 	tp, sum := input.(*TopographicMap), 0
 
 	for _, row := range tp.grid {
@@ -88,7 +90,7 @@ func PartOne(input interface{}) interface{} {
 	return sum
 }
 
-func PartTwo(input interface{}) interface{} {
+func (s Solution) PartTwo(input any) any {
 	tp, sum := input.(*TopographicMap), 0
 
 	for _, row := range tp.grid {
@@ -100,4 +102,8 @@ func PartTwo(input interface{}) interface{} {
 	}
 
 	return sum
+}
+
+func GetSolution() Solution {
+	return Solution{}
 }

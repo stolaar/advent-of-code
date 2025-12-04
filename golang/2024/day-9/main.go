@@ -1,9 +1,11 @@
-package main
+package solution
 
 import (
 	"strconv"
 	"strings"
 )
+
+type Solution struct{}
 
 func stringToBlocks(str string) ([]*fileblock, []*fileblock) {
 	blocks, freeSpaces, id, file := []*fileblock{}, []*fileblock{}, 0, true
@@ -40,7 +42,7 @@ func stringToBlocks(str string) ([]*fileblock, []*fileblock) {
 	return blocks, freeSpaces
 }
 
-func ProcessInput(input []string) interface{} {
+func (s Solution) ProcessInput(input []string) any {
 	return strings.Join(input, "\n")
 }
 
@@ -49,7 +51,7 @@ type fileblock struct {
 	freeSpace            bool
 }
 
-func PartOne(input interface{}) interface{} {
+func (s Solution) PartOne(input any) any {
 	blocks, _ := stringToBlocks(input.(string))
 	id := 0
 
@@ -109,7 +111,7 @@ func PartOne(input interface{}) interface{} {
 	return sum
 }
 
-func PartTwo(input interface{}) interface{} {
+func (s Solution) PartTwo(input any) any {
 	blocks, freeSpaces := stringToBlocks(input.(string))
 
 	j, sum := len(blocks)-1, 0
@@ -150,3 +152,7 @@ func PartTwo(input interface{}) interface{} {
 	return sum
 }
 
+
+func GetSolution() Solution {
+	return Solution{}
+}

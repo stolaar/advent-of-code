@@ -1,16 +1,18 @@
-package main
+package solution
 
 import (
 	"strconv"
 	"strings"
 )
 
+type Solution struct{}
+
 type Assignment struct {
 	firstPair  [2]int
 	secondPair [2]int
 }
 
-func ProcessInput(input []string) interface{} {
+func (s Solution) ProcessInput(input []string) any {
 	result := []*Assignment{}
 
 	for _, str := range input {
@@ -36,7 +38,7 @@ func ProcessInput(input []string) interface{} {
 	return result
 }
 
-func PartOne(input interface{}) interface{} {
+func (s Solution) PartOne(input any) any {
 	assignemnts, count := input.([]*Assignment), 0
 
 	for _, assignment := range assignemnts {
@@ -56,7 +58,7 @@ func PartOne(input interface{}) interface{} {
 	return count
 }
 
-func PartTwo(input interface{}) interface{} {
+func (s Solution) PartTwo(input any) any {
 	assignemnts, count := input.([]*Assignment), 0
 
 	for _, assignment := range assignemnts {
@@ -87,3 +89,7 @@ func PartTwo(input interface{}) interface{} {
 	return count
 }
 
+
+func GetSolution() Solution {
+	return Solution{}
+}

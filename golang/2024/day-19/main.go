@@ -1,15 +1,17 @@
-package main
+package solution
 
 import (
 	"strings"
 )
+
+type Solution struct{}
 
 type Design struct {
 	AvailablePatterns []string
 	DesiredDesign     []string
 }
 
-func ProcessInput(input []string) interface{} {
+func (s Solution) ProcessInput(input []string) any {
 	design := Design{
 		DesiredDesign: make([]string, len(input)-3),
 	}
@@ -73,7 +75,7 @@ func isPossible(design string, maxPatternLength int, patternsDict, memo map[stri
 	return false
 }
 
-func PartOne(input interface{}) interface{} {
+func (s Solution) PartOne(input any) any {
 	design := input.(Design)
 
 	patternsDict, maxPatternLength, memo := make(map[string]bool), 0, map[string]bool{}
@@ -96,7 +98,11 @@ func PartOne(input interface{}) interface{} {
 	return sum
 }
 
-func PartTwo(input interface{}) interface{} {
+func (s Solution) PartTwo(input any) any {
 	return ""
 }
 
+
+func GetSolution() Solution {
+	return Solution{}
+}

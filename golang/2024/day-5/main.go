@@ -1,16 +1,18 @@
-package main
+package solution
 
 import (
 	"strconv"
 	"strings"
 )
 
+type Solution struct{}
+
 type PrintQueue struct {
 	rules   map[int]map[int]bool
 	updates [][]int
 }
 
-func ProcessInput(input []string) interface{} {
+func (s Solution) ProcessInput(input []string) any {
 	orderingRules, rulesProcessed, updates := make(map[int]map[int]bool), false, [][]int{}
 
 	for i := 0; i < len(input)-1; i++ {
@@ -50,7 +52,7 @@ func ProcessInput(input []string) interface{} {
 	}
 }
 
-func PartOne(input interface{}) interface{} {
+func (s Solution) PartOne(input any) any {
 	printQ, sum := input.(*PrintQueue), 0
 
 	for _, update := range printQ.updates {
@@ -98,7 +100,7 @@ func fixUpdate(processed map[int]int, rules map[int]map[int]bool, update []int) 
 	return true, update
 }
 
-func PartTwo(input interface{}) interface{} {
+func (s Solution) PartTwo(input any) any {
 	printQ, sum := input.(*PrintQueue), 0
 
 	for _, update := range printQ.updates {
@@ -124,4 +126,8 @@ func PartTwo(input interface{}) interface{} {
 	}
 
 	return sum
+}
+
+func GetSolution() Solution {
+	return Solution{}
 }

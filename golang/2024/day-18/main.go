@@ -1,4 +1,4 @@
-package main
+package solution
 
 import (
 	"fmt"
@@ -6,6 +6,8 @@ import (
 	"strconv"
 	"strings"
 )
+
+type Solution struct{}
 
 type Coordinate struct {
 	Corrupted    bool
@@ -113,7 +115,7 @@ func (r *RAM) explore(coordinate *Coordinate) {
 	}
 }
 
-func ProcessInput(input []string) interface{} {
+func (s Solution) ProcessInput(input []string) any {
 	return input[:len(input)-1]
 }
 
@@ -130,7 +132,7 @@ func (r *RAM) reset() {
 	}
 }
 
-func PartOne(input interface{}) interface{} {
+func (s Solution) PartOne(input any) any {
 	ram := createRamGrid(71)
 
 	ram.placeCorruptedCoordinates(input.([]string)[:1024])
@@ -142,7 +144,7 @@ func PartOne(input interface{}) interface{} {
 	return ram.grid[70][70].ShortestPath
 }
 
-func PartTwo(input interface{}) interface{} {
+func (s Solution) PartTwo(input any) any {
 	ram := createRamGrid(71)
 
 	ram.placeCorruptedCoordinates(input.([]string)[:1024])
@@ -168,4 +170,8 @@ func PartTwo(input interface{}) interface{} {
 	}
 
 	return ram.grid[70][70].ShortestPath
+}
+
+func GetSolution() Solution {
+	return Solution{}
 }

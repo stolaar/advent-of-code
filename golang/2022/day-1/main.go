@@ -1,10 +1,12 @@
-package main
+package solution
 
 import (
 	"strconv"
 )
 
-func ProcessInput(input []string) interface{} {
+type Solution struct{}
+
+func (s Solution) ProcessInput(input []string) any {
 	result := [][]int{}
 
 	current := []int{}
@@ -24,7 +26,7 @@ func ProcessInput(input []string) interface{} {
 	return result
 }
 
-func PartOne(input interface{}) interface{} {
+func (s Solution) PartOne(input any) any {
 	numsArr := input.([][]int)
 	maxc := 0
 
@@ -41,7 +43,7 @@ func PartOne(input interface{}) interface{} {
 	return maxc
 }
 
-func PartTwo(input interface{}) interface{} {
+func (s Solution) PartTwo(input any) any {
 	numsArr, top1, top2, top3 := input.([][]int), 0, 0, 0
 
 	for _, nums := range numsArr {
@@ -60,4 +62,8 @@ func PartTwo(input interface{}) interface{} {
 	}
 
 	return top1 + top2 + top3
+}
+
+func GetSolution() Solution {
+	return Solution{}
 }
