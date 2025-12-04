@@ -1,4 +1,10 @@
-package main
+package solution
+
+type Solution struct{}
+
+func (s Solution) ReProcessInput() bool {
+	return false
+}
 
 type grid [][]*cell
 
@@ -8,7 +14,7 @@ type cell struct {
 	removed   bool
 }
 
-func ProcessInput(input []string) any {
+func (s Solution) ProcessInput(input []string) any {
 	puzzle := make(grid, len(input)-1)
 
 	for i, line := range input {
@@ -74,7 +80,7 @@ func (g grid) canBeForklifted(c *cell) bool {
 	return numberOfPossibleLifts < 4
 }
 
-func PartOne(input any) any {
+func (s Solution) PartOne(input any) any {
 	puzzle, ans := input.(grid), 0
 
 	for _, row := range puzzle {
@@ -88,7 +94,7 @@ func PartOne(input any) any {
 	return ans
 }
 
-func PartTwo(input any) any {
+func (s Solution) PartTwo(input any) any {
 	puzzle, ans := input.(grid), 0
 
 	run := true
@@ -106,4 +112,8 @@ func PartTwo(input any) any {
 	}
 
 	return ans
+}
+
+func GetSolution() Solution {
+	return Solution{}
 }

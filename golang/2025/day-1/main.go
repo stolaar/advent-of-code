@@ -1,11 +1,17 @@
-package main
+package solution
 
 import (
 	"strconv"
 	"strings"
 )
 
-func ProcessInput(input []string) any {
+type Solution struct{}
+
+func (s Solution) ReProcessInput() bool {
+	return false
+}
+
+func (s Solution) ProcessInput(input []string) any {
 	return input[0 : len(input)-1]
 }
 
@@ -62,7 +68,7 @@ func rotate(current, rotation int) int {
 	return current
 }
 
-func PartOne(input any) any {
+func (s Solution) PartOne(input any) any {
 	rotations := input.([]string)
 
 	ans, current := 0, 50
@@ -88,7 +94,7 @@ func PartOne(input any) any {
 	return ans
 }
 
-func PartTwo(input any) any {
+func (s Solution) PartTwo(input any) any {
 	rotations := input.([]string)
 
 	ans, current := 0, 50
@@ -112,4 +118,8 @@ func PartTwo(input any) any {
 		}
 	}
 	return ans
+}
+
+func GetSolution() Solution {
+	return Solution{}
 }

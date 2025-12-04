@@ -1,11 +1,17 @@
-package main
+package solution
 
 import (
 	"strconv"
 	"strings"
 )
 
-func ProcessInput(input []string) interface{} {
+type Solution struct{}
+
+func (s Solution) ReProcessInput() bool {
+	return false
+}
+
+func (s Solution) ProcessInput(input []string) any {
 	result := make([][]int, len(input)-1)
 
 	for idx, line := range input {
@@ -22,7 +28,7 @@ func ProcessInput(input []string) interface{} {
 	return result
 }
 
-func PartOne(input interface{}) interface{} {
+func (s Solution) PartOne(input any) any {
 	ratings, ans := input.([][]int), 0
 
 	for _, joltage := range ratings {
@@ -91,7 +97,7 @@ func highestTwelve(joltage []int) int {
 	return res
 }
 
-func PartTwo(input interface{}) interface{} {
+func (s Solution) PartTwo(input any) any {
 	ratings, ans := input.([][]int), 0
 
 	for _, joltage := range ratings {
@@ -101,3 +107,6 @@ func PartTwo(input interface{}) interface{} {
 	return ans
 }
 
+func GetSolution() Solution {
+	return Solution{}
+}

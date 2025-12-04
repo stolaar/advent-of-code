@@ -6,8 +6,11 @@ import (
 	"os"
 	"os/exec"
 	"plugin"
+	"strconv"
 	"strings"
 	"time"
+
+	aoc2025 "github.com/stolaar/advent-of-code/2025"
 )
 
 func buildPlugin(year string, i string) {
@@ -21,7 +24,21 @@ func removePlugin(year string, i string) {
 	exec.Command("rm", "-rf", fmt.Sprintf("%s/day-%s/main.so", year, i)).Run()
 }
 
+type yearSolutions interface {
+	Run(day int)
+}
+
+var yearsMap map[string]yearSolutions = make(map[string]yearSolutions)
+
 func Run(year string, i string) {
+	if _, ok := yearsMap[year]; ok {
+		day, _ := strconv.Atoi(i)
+		fmt.Printf("Running year %s day %s \n", year, i)
+		yearsMap[year].Run(day)
+		return
+	}
+
+	// TODO: Keep plugin approach until all previous years are refactored
 	buildPlugin(year, i)
 
 	p, err := plugin.Open(fmt.Sprintf("%s/day-%s/main.so", year, i))
@@ -97,21 +114,35 @@ func Generate(year string, day string) {
 	checkError(err, true)
 	defer f.Close()
 
-	code := `package main
+	code := `package solution
 
-func ProcessInput(input []string) interface{} {
+type Solution struct {}
+
+func (s Solution) ReProcessInput() bool {
+  return false
+}
+
+func (s Solution) ProcessInput(input []string) any {
   return ""
 }
 
-func PartOne(input interface{}) interface{} {
+func (s Solution) PartOne(input any) any {
   return ""
 }
 
-func PartTwo(input interface{}) interface{} {
+func (s Solution) PartTwo(input any) any {
   return ""
+}
+
+func GetSolution() Solution {
+	return Solution{}
 }
   `
 
 	err = os.WriteFile(fmt.Sprintf("%s/main.go", dir), []byte(code), 0o644)
 	checkError(err, true)
+}
+
+func init() {
+	yearsMap["2025"] = aoc2025.Solutions{}
 }

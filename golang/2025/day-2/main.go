@@ -1,11 +1,17 @@
-package main
+package solution
 
 import (
 	"strconv"
 	"strings"
 )
 
-func ProcessInput(input []string) interface{} {
+type Solution struct{}
+
+func (s Solution) ReProcessInput() bool {
+	return false
+}
+
+func (s Solution) ProcessInput(input []string) any {
 	ranges := strings.Split(input[0], ",")
 
 	return ranges
@@ -38,7 +44,7 @@ func isMadeOfSequence(s string, seq string) bool {
 	return c == len(s)/len(seq) && len(s)%len(seq) == 0
 }
 
-func PartOne(input interface{}) interface{} {
+func (s Solution) PartOne(input interface{}) interface{} {
 	ranges, ans := input.([]string), 0
 
 	for _, r := range ranges {
@@ -50,7 +56,7 @@ func PartOne(input interface{}) interface{} {
 	return ans
 }
 
-func PartTwo(input interface{}) interface{} {
+func (s Solution) PartTwo(input interface{}) interface{} {
 	ranges, ans := input.([]string), 0
 
 	for _, r := range ranges {
@@ -62,3 +68,6 @@ func PartTwo(input interface{}) interface{} {
 	return ans
 }
 
+func GetSolution() Solution {
+	return Solution{}
+}
