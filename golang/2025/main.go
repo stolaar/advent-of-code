@@ -1,10 +1,10 @@
 package year
 
 import (
+	"bufio"
 	"fmt"
 	"log"
 	"os"
-	"strings"
 	"time"
 
 	solution1 "github.com/stolaar/advent-of-code/2025/day-1"
@@ -12,6 +12,7 @@ import (
 	solution3 "github.com/stolaar/advent-of-code/2025/day-3"
 	solution4 "github.com/stolaar/advent-of-code/2025/day-4"
 	solution5 "github.com/stolaar/advent-of-code/2025/day-5"
+	solution6 "github.com/stolaar/advent-of-code/2025/day-6"
 )
 
 type Puzzle interface {
@@ -32,14 +33,28 @@ func (s Solutions) Run(day int) {
 	problem := Problems[day]
 
 	start := time.Now()
-	f, err := os.ReadFile(fmt.Sprintf("2025/day-%d/input.txt", day))
+	f, err := os.Open(fmt.Sprintf("2025/day-%d/input.txt", day))
+	defer f.Close()
 
 	if err != nil {
 		log.Fatalf("open file error: %v", err)
 		return
 	}
 
-	input := problem.ProcessInput(strings.Split(string(f), "\n"))
+	var lines []string
+
+	scanner := bufio.NewScanner(f)
+
+	for scanner.Scan() {
+		lines = append(lines, scanner.Text())
+	}
+
+	if err := scanner.Err(); err != nil {
+		log.Fatalf("scanner error: %v", err)
+		return
+	}
+
+	input := problem.ProcessInput(lines)
 	end := time.Since(start)
 	fmt.Printf("Input exec time: %s \n", end)
 
@@ -52,7 +67,7 @@ func (s Solutions) Run(day int) {
 	fmt.Println("Part one result: ", result)
 
 	if problem.ReProcessInput() {
-		input = problem.ProcessInput(strings.Split(string(f), "\n"))
+		input = problem.ProcessInput(lines)
 	}
 
 	start = time.Now()
@@ -70,4 +85,5 @@ func init() {
 	Problems[3] = solution3.GetSolution()
 	Problems[4] = solution4.GetSolution()
 	Problems[5] = solution5.GetSolution()
+	Problems[6] = solution6.GetSolution()
 }
