@@ -44,7 +44,7 @@ func (s Solution) ProcessInput(input []string) any {
 		p.ingredientIdRanges = append(p.ingredientIdRanges, ingRange)
 	}
 
-	for i < len(input)-1 {
+	for i < len(input) {
 		id, _ := strconv.Atoi(input[i])
 		p.availableIngredients = append(p.availableIngredients, id)
 		i++
@@ -122,4 +122,3 @@ func (s Solution) PartTwo(input any) any {
 func GetSolution() Solution {
 	return Solution{}
 }
-

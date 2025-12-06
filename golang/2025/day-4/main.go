@@ -18,9 +18,6 @@ func (s Solution) ProcessInput(input []string) any {
 	puzzle := make(grid, len(input)-1)
 
 	for i, line := range input {
-		if i == len(input)-1 {
-			break
-		}
 		row := make([]*cell, len(line))
 
 		for j, c := range line {

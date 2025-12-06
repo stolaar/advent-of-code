@@ -15,9 +15,6 @@ func (s Solution) ProcessInput(input []string) any {
 	result := make([][]int, len(input)-1)
 
 	for idx, line := range input {
-		if idx == len(input)-1 {
-			break
-		}
 		result[idx] = make([]int, len(line))
 
 		for j, r := range line {

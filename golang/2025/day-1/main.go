@@ -12,7 +12,7 @@ func (s Solution) ReProcessInput() bool {
 }
 
 func (s Solution) ProcessInput(input []string) any {
-	return input[0 : len(input)-1]
+	return input
 }
 
 func rotationsPassedZero(current, rotation int) int {
