@@ -14,6 +14,7 @@ import (
 	solution5 "github.com/stolaar/advent-of-code/2025/day-5"
 	solution6 "github.com/stolaar/advent-of-code/2025/day-6"
 	solution7 "github.com/stolaar/advent-of-code/2025/day-7"
+	solution8 "github.com/stolaar/advent-of-code/2025/day-8"
 )
 
 type Puzzle interface {
@@ -88,4 +89,5 @@ func init() {
 	Problems[5] = solution5.GetSolution()
 	Problems[6] = solution6.GetSolution()
 	Problems[7] = solution7.GetSolution()
+	Problems[8] = solution8.GetSolution()
 }
